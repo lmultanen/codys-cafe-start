@@ -23,7 +23,7 @@ describe('Routes', () => {
   })
 
   describe('/pugs', () => {
-    xdescribe('GET /pugs', () => {
+    describe('GET /pugs', () => {
       it('sends all pugs', () => {
         return agent
           .get('/api/pugs')
@@ -37,7 +37,7 @@ describe('Routes', () => {
       })
     })
 
-    xdescribe('GET /pugs/favoriteCoffee/:favoriteCoffeeName', () => {
+    describe('GET /pugs/favoriteCoffee/:favoriteCoffeeName', () => {
       // Be careful about the order in which you register your routes!
       // Don't forget that Express evaluates them in the order in which they're defined!
       it('sends all pugs based on the specified favorite coffe name', async () => {
@@ -79,7 +79,7 @@ describe('Routes', () => {
       })
     })
 
-    xdescribe('GET /pugs/:pugId', () => {
+    describe('GET /pugs/:pugId', () => {
       it('gets the pug with the specified id', async () => {
         await agent
           .get(`/api/pugs/${cody.id}`)
@@ -105,7 +105,7 @@ describe('Routes', () => {
       })
     })
 
-    xdescribe('POST /pugs', () => {
+    describe('POST /pugs', () => {
       it('creates a new pug and sends back the new pug', async () => {
         await agent
           .post('/api/pugs')
