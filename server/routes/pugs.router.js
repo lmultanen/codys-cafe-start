@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Pug} = require('../models')
+const {Pug, Coffee} = require('../models')
 
 // Your code here!
 // Remember that these routes are already mounted on
@@ -28,7 +28,7 @@ router.get('/:pugId', async (req,res,next) => {
     try {
         const pug = await Pug.findByPk(req.params.pugId);
         if (pug === null) {
-            res.status(404).send('Pug does not exist; page not found');
+            res.status(404).send('Page not found: Pug does not exist');
         }
         res.send(pug);
     } catch (error) {
@@ -42,6 +42,33 @@ router.post('/', async (req,res,next) => {
             where: req.body
         })
         res.status(201).send(newPug)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.put('/:pugId', async (req,res,next) => {
+    try {
+        const pug = await Pug.findByPk(req.params.pugId);
+        if (pug === null) {
+            res.status(404).send('Page not found: Pug does not exist')
+        }
+        const coffee = await Coffee.findByPk(req.body.favoriteCoffeeId)
+        await pug.setFavoriteCoffee(coffee)
+        res.send(pug)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/:pugId', async (req,res,next) => {
+    try {
+        const pug = await Pug.findByPk(req.params.pugId);
+        if (pug === null) {
+            res.status(404).send('Page not found: Pug does not exist')
+        }
+        await pug.destroy();
+        res.status(204).send('No Content');
     } catch (error) {
         next(error)
     }
