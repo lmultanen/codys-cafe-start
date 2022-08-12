@@ -12,7 +12,8 @@ const Coffee = db.define('coffee', {
     }
   },
   ingredients: {
-    type: Sequelize.ARRAY(Sequelize.TEXT)
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: ['love']
   }
 })
 
