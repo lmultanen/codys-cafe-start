@@ -30,7 +30,6 @@ Pug.prototype.shortBio = function() {
 }
 
 Pug.findByCoffee = async function(favorite) {
-  console.log('LOGGING STUFF HERE')
   const pugs = await Pug.findAll({
     include: {
       model: Coffee,
